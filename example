@@ -1,0 +1,23 @@
+from psql_wrapper.db import DB
+
+dsn = "dbname=test user=postgres password=123456 host=localhost port=5432"
+
+db = DB(dsn)
+
+print("\n--- INSERT ---")
+row = db.insert("users", {"name": "Alice", "age": 20})
+print(row)
+
+print("\n--- SELECT ---")
+rows = db.select("users", where={"age": 20})
+print(rows)
+
+print("\n--- UPDATE ---")
+row = db.update("users", {"age": 30}, where={"name": "Alice"})
+print(row)
+
+print("\n--- DELETE ---")
+rows = db.delete("users", {"name": "Alice"})
+print(rows)
+
+db.close()
